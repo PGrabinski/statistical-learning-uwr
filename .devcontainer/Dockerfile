@@ -1,0 +1,1 @@
+FROM jupyter/r-notebook:x86_64-ubuntu-22.04

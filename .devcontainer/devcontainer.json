@@ -1,0 +1,22 @@
+{
+  "name": "statistical-learning",
+  "build": {
+      "dockerfile": "./Dockerfile"
+  },
+
+  "customizations": {
+      "vscode": {
+        "extensions": [
+			"ms-toolsai.jupyter",
+			"ms-python.python",
+			"ms-azuretools.vscode-docker",
+			"GitHub.copilot",
+			"GitHub.copilot-chat"
+		]
+      }
+    },
+
+    "forwardPorts": [8888], 
+    "runArgs": ["--env-file",".devcontainer/devcontainer.env"],
+    "postCreateCommand": "bash ./.devcontainer/post-install.sh"
+}
