@@ -51,4 +51,4 @@ rsconnect/
 # devcontainers
 .devcontainer/devcontainer.env
  
- 
+.ipynb_checkpoints
