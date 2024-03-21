@@ -51,5 +51,4 @@ rsconnect/
 # devcontainers
 .devcontainer/devcontainer.env
  
-# jupyter
-.ipynb_checkpoints
+ 
