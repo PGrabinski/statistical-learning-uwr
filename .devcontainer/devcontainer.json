@@ -1,22 +1,33 @@
 {
   "name": "statistical-learning",
-  "build": {
-      "dockerfile": "./Dockerfile"
-  },
+  "image": "ghcr.io/rocker-org/devcontainer/r-ver:4",
+  "features": {
+      "ghcr.io/rocker-org/devcontainer-features/rstudio-server:latest": {}
+  }, 
 
   "customizations": {
       "vscode": {
         "extensions": [
-			"ms-toolsai.jupyter",
-			"ms-python.python",
-			"ms-azuretools.vscode-docker",
-			"GitHub.copilot",
-			"GitHub.copilot-chat"
-		]
+          "ms-toolsai.jupyter",
+          "ms-python.python",
+          "ms-azuretools.vscode-docker",
+          "GitHub.copilot",
+          "GitHub.copilot-chat",
+          "REditorSupport.r"
+        ]
       }
     },
-
-    "forwardPorts": [8888], 
+    "forwardPorts": [
+        8787
+    ],
+    "portsAttributes": {
+        "8787": {
+            "label": "RStudio IDE"
+        }
+    },
     "runArgs": ["--env-file",".devcontainer/devcontainer.env"],
-    "postCreateCommand": "bash ./.devcontainer/post-install.sh"
+    "postCreateCommand": "bash ./.devcontainer/post-install.sh",
+    "postAttachCommand": {
+        "rstudio-start": "rserver"
+    }
 }
