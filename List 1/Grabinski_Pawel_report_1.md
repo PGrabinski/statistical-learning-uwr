@@ -61,3 +61,8 @@ $$\sqrt{A}\sqrt{A} = \begin{bmatrix} 1+2^{-\frac{1}{2}} & -1 + 2^{-\frac{1}{2}} 
 =\begin{bmatrix} 3 & -1 \\ -1 & 3 \end{bmatrix}=A$$
 
 ### Exercsise 2
+
+Consider the spectral decomposition of a positive definite matrix as given in
+Lecture 1:
+$$A = P\Lambda P^T.$$
+The columns of $P$ are made of eigenvectors $e_i$, $i = 1, . . . , n$ and they are orthonormalized, i.e. their lengths are one and they are orthogonal (peripendicular) one to another. The diagonal matrix $\Lambda$ has the corresponding (positive) eigenvalues on the diagonal. Provide argument for the following
