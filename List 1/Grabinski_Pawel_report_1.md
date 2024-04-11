@@ -44,12 +44,12 @@ $$\lambda_1v_1v_1^T+\lambda_2v_2v_2^T=4\begin{bmatrix} 2^{-\frac{1}{2}} \\ -2^{-
 
 #### 4. Use the spectral decomposition of A given above and find $\sqrt{A}$. Check that the matrix you found satisfies: $\sqrt{A}\sqrt{A}=A$.
 
-To find $\sqrt{A}$, we can use the diagonal decomposition of $A$:
-$$A = \left[v_1, v_2\right] \begin{bmatrix} \lambda_1 & 0 \\ 0 & \lambda_2 \end{bmatrix} \left[v_1, v_2\right]^{-1}$$
+To find $\sqrt{A}$, we can use the spectral decomposition of $A$:
+$$A = \left[v_1, v_2\right] \begin{bmatrix} \lambda_1 & 0 \\ 0 & \lambda_2 \end{bmatrix} \left[v_1, v_2\right]^T$$
 The square root of $A$ will be:
-$$\sqrt{A} = \left[v_1, v_2\right] \begin{bmatrix} \sqrt{\lambda_1} & 0 \\ 0 & \sqrt{\lambda_2} \end{bmatrix} \left[v_1, v_2\right]^{-1}$$
+$$\sqrt{A} = \left[v_1, v_2\right] \begin{bmatrix} \sqrt{\lambda_1} & 0 \\ 0 & \sqrt{\lambda_2} \end{bmatrix} \left[v_1, v_2\right]^T$$
 In our case it is:
-$$\sqrt{A} = \begin{bmatrix} 2^{-\frac{1}{2}} & 2^{-\frac{1}{2}} \\ -2^{-\frac{1}{2}} & 2^{-\frac{1}{2}} \end{bmatrix} \begin{bmatrix} 2 & 0 \\ 0 & \sqrt{2} \end{bmatrix} \begin{bmatrix} 2^{-\frac{1}{2}} & 2^{-\frac{1}{2}} \\ -2^{-\frac{1}{2}} & 2^{-\frac{1}{2}} \end{bmatrix}^{-1}\\
+$$\sqrt{A} = \begin{bmatrix} 2^{-\frac{1}{2}} & 2^{-\frac{1}{2}} \\ -2^{-\frac{1}{2}} & 2^{-\frac{1}{2}} \end{bmatrix} \begin{bmatrix} 2 & 0 \\ 0 & \sqrt{2} \end{bmatrix} \begin{bmatrix} 2^{-\frac{1}{2}} & 2^{-\frac{1}{2}} \\ -2^{-\frac{1}{2}} & 2^{-\frac{1}{2}} \end{bmatrix}^T\\
 =\begin{bmatrix} 2^{-\frac{1}{2}} & 2^{-\frac{1}{2}} \\ -2^{-\frac{1}{2}} & 2^{-\frac{1}{2}} \end{bmatrix} \begin{bmatrix} 2 & 0 \\ 0 & \sqrt{2} \end{bmatrix} \begin{bmatrix} 2^{-\frac{1}{2}} & -2^{-\frac{1}{2}} \\ 2^{-\frac{1}{2}} & 2^{-\frac{1}{2}} \end{bmatrix}\\
 =\begin{bmatrix} 2^{-\frac{1}{2}} & 2^{-\frac{1}{2}} \\ -2^{-\frac{1}{2}} & 2^{-\frac{1}{2}} \end{bmatrix}  \begin{bmatrix} 2^{\frac{1}{2}} & -2^{\frac{1}{2}} \\ 1 & 1 \end{bmatrix}\\
 =\begin{bmatrix} 1+2^{-\frac{1}{2}} & -1 + 2^{-\frac{1}{2}} \\ -1+2^{-\frac{1}{2}} & 1 + 2^{-\frac{1}{2}} \end{bmatrix}$$
@@ -65,4 +65,109 @@ $$\sqrt{A}\sqrt{A} = \begin{bmatrix} 1+2^{-\frac{1}{2}} & -1 + 2^{-\frac{1}{2}} 
 Consider the spectral decomposition of a positive definite matrix as given in
 Lecture 1:
 $$A = P\Lambda P^T.$$
-The columns of $P$ are made of eigenvectors $e_i$, $i = 1, . . . , n$ and they are orthonormalized, i.e. their lengths are one and they are orthogonal (peripendicular) one to another. The diagonal matrix $\Lambda$ has the corresponding (positive) eigenvalues on the diagonal. Provide argument for the following
+The columns of $P$ are made of eigenvectors $e_i$, $i = 1, . . . , n$ and they are orthonormalized, i.e. their lengths are one and they are orthogonal (peripendicular) one to another. The diagonal matrix $\Lambda$ has the corresponding (positive) eigenvalues on the diagonal. Provide argument for the following:
+#### 1. $P^T = P^{-1}$
+
+Now, by the definition of the inverse matrix, we have:
+$$P^{-1}P = I,$$
+where $I$ is the identity matrix. 
+
+Similarly, we can consider:
+$$(P^TP)_{km} = \sum_{i=1}^{n}(e_k^T)_i(e_m)_i = e_k^Te_m.$$
+
+By the orthonormality we have that:
+$$e_i^Te_j = \delta_{ij}.$$
+
+That gives us:
+$$(P^TP)_{km} = e_k^Te_m = \delta_{km}.$$
+
+And in the matrix form:
+$$P^TP = I.$$
+
+Then we have:
+$$P^TP -  P^{-1}P = 0\\
+(P^T-P^{-1})P=0$$
+
+As $P$ is non-singular, we can multiply both sides by $P^{-1}$:
+$$P^T-P^{-1}=0\\
+P^T=P^{-1}$$
+
+#### 2. Determinant of $\Lambda$ is the product of the terms on the diagonal.
+
+We can show that by induction. Let's consider diagonal square matrices $A^{(k)}$ where $k$ is the number of dimensions and their entries are positive.
+
+For $n=1$ according to the lecture notes:
+$$\det(A)=a_{11}=\prod_{i=1}^{1}a_{ii}$$
+
+For $n>1$, we assume that $\det(A^{(n)})=\prod_{i=1}^{n}a_{ii}$. We can consider the matrix $A^{(n+1)}$ with the formula from the lecture:
+$$\det(A^{(n+1)}) = \sum_{j}^k a_{1j}(-1)^{1+j}\det(A_{1j}),$$
+where $A_{1j}$ is the matrix obtained if row $1$ and column $j$ are
+deleted.
+
+As the matrix $A^{(n+1)}$ is diagonal, the only non-zero element is $a_{11}$. Thus, the determinant is:
+
+$$\det(A^{(n+1)}) = a_{11}(-1)^{1+1}\det(A_{11}) = a_{11}\det(A_{11}) $$
+
+Now, we removed the row and column with indices $1$, so the matrix $A_{11}$ is diagonal and belongs the our family of matrices. It can be denoted as $A^{(n)}$ (with its entries being entries of the original $A^{(n+1)}$ matrix with indices starting from $2$ going to $n+1$) Thus, we can write:
+
+$$\det(A^{(n+1)}) = a_{11}\det(A_{11}) = a_{11}\prod_{i=2}^{n+1}a_{ii} = \prod_{i=1}^{n+1}a_{ii}$$
+
+As we have shown that the formula holds for $n=1$ and that if it holds for $n$ it holds for $n+1$, we have shown that the formula holds for all $n$.
+
+#### 3. Determinat of $A$ is the same as that of $\Lambda$.
+
+We can consider the determinants through the spectral decomposition of $A$:
+$$\det(A) = \det(P\Lambda P^T)=\det(P)\det(\Lambda)\det(P^T)=\det(\Lambda)\det(P)\det(P^T)=\det(\Lambda)\det(PP^T).$$
+
+Where we used the property of the determinant that $\det(AB)=\det(A)\det(B)$ from the lecture notes and the fact that determinants are scalars so their multiplication is commutative.
+
+As we have shown in the previous point that $P^T=P^{-1}$, we have:
+$$\det(A) = \det(\Lambda)\det(PP^T)=\det(\Lambda)\det(I)=\det(\Lambda).$$
+
+#### 4. Find the inverse of $\Lambda$, i.e. $\Lambda^{-1}$.
+Since the eigenvalues $\lambda_i$ are positive, we can define the matrix $B$ as:
+$$B =\text{diag}\left(\frac{1}{\lambda_1},\dots,\frac{1}{\lambda_n}\right)$$
+Then, we can consider the product of $\Lambda$ and $B$:
+$$\Lambda B=\text{diag}\left(\lambda_1,\dots,\lambda_n\right)\text{diag}\left(\frac{1}{\lambda_1},\dots,\frac{1}{\lambda_n}\right)=\text{diag}\left(\frac{\lambda_1}{\lambda_1},\dots,\frac{\lambda_n}{\lambda_n}\right)=\text{diag}\left(1,\dots,1\right)=I$$
+
+By the definition of the inverse matrix, we have:
+that $B=\Lambda^{-1}$.
+
+#### 5. A simple way to determine the inverse of a matrix $A$ from its spectral decomposition is through
+$$A^{-1} = P\Lambda^{-1}P^T.$$
+Verify that the right hand side of the above indeed define the inverse of $A$.
+
+Let's consider the product of $A$ and $A^{-1}$:
+$$A^{-1}A = P\Lambda^{-1}P^TP\Lambda P^T = P\Lambda^{-1}I\Lambda P^T = P\Lambda^{-1}\Lambda P^T = PIP^T = I$$
+
+#### 6. Check all these statements on the little example of Exercise 1.
+
+1. $P^T = \begin{bmatrix} 2^{-\frac{1}{2}} & 2^{-\frac{1}{2}} \\ -2^{-\frac{1}{2}} & 2^{-\frac{1}{2}} \end{bmatrix}^T=\begin{bmatrix} 2^{-\frac{1}{2}} & -2^{-\frac{1}{2}} \\ 2^{-\frac{1}{2}} & 2^{-\frac{1}{2}} \end{bmatrix}\\P^{-1} = \begin{bmatrix} 2^{-\frac{1}{2}} & 2^{-\frac{1}{2}} \\ -2^{-\frac{1}{2}} & 2^{-\frac{1}{2}} \end{bmatrix}^{-1}=((2^{-\frac{1}{2}})^2-(-2^{-\frac{1}{2}}\cdot2^{-\frac{1}{2}}))^{-1}\begin{bmatrix} 2^{-\frac{1}{2}} & -2^{-\frac{1}{2}} \\ 2^{-\frac{1}{2}} & 2^{-\frac{1}{2}} \end{bmatrix}\\
+P^T=P^{-1}$
+2. $\det(\Lambda) = \det(\begin{bmatrix} 4 & 0 \\ 0 & 2 \end{bmatrix})=4\det(2)=4\cdot2=8$
+3. $\det(A) = \det(\begin{bmatrix} 3 & -1 \\ -1 & 3 \end{bmatrix})=3\cdot3-(-1)\cdot(-1)=9-1=8=\det(\Lambda)$
+4. $\Lambda^{-1} = \begin{bmatrix} \frac{1}{4} & 0 \\ 0 & \frac{1}{2} \end{bmatrix}$
+5. $A^{-1}A = \begin{bmatrix} 2^{-\frac{1}{2}} & 2^{-\frac{1}{2}} \\ -2^{-\frac{1}{2}} & 2^{-\frac{1}{2}} \end{bmatrix}\begin{bmatrix} \frac{1}{4} & 0 \\ 0 & \frac{1}{2} \end{bmatrix}\begin{bmatrix} 2^{-\frac{1}{2}} & -2^{-\frac{1}{2}} \\ 2^{-\frac{1}{2}} & 2^{-\frac{1}{2}} \end{bmatrix}\begin{bmatrix} 2^{-\frac{1}{2}} & 2^{-\frac{1}{2}} \\ -2^{-\frac{1}{2}} & 2^{-\frac{1}{2}} \end{bmatrix}\begin{bmatrix} 4 & 0 \\ 0 & 2 \end{bmatrix}\begin{bmatrix} 2^{-\frac{1}{2}} & -2^{-\frac{1}{2}} \\ 2^{-\frac{1}{2}} & 2^{-\frac{1}{2}} \end{bmatrix}\\
+= \begin{bmatrix} 2^{-\frac{1}{2}} & 2^{-\frac{1}{2}} \\ -2^{-\frac{1}{2}} & 2^{-\frac{1}{2}} \end{bmatrix}\begin{bmatrix} \frac{1}{4} & 0 \\ 0 & \frac{1}{2} \end{bmatrix}\begin{bmatrix} 2^{-\frac{1}{2}} & 2^{-\frac{1}{2}} \\ -2^{-\frac{1}{2}} & 2^{-\frac{1}{2}} \end{bmatrix}^{-1}\begin{bmatrix} 2^{-\frac{1}{2}} & 2^{-\frac{1}{2}} \\ -2^{-\frac{1}{2}} & 2^{-\frac{1}{2}} \end{bmatrix}\begin{bmatrix} 4 & 0 \\ 0 & 2 \end{bmatrix}\begin{bmatrix} 2^{-\frac{1}{2}} & -2^{-\frac{1}{2}} \\ 2^{-\frac{1}{2}} & 2^{-\frac{1}{2}} \end{bmatrix}\\
+=\begin{bmatrix} 2^{-\frac{1}{2}} & 2^{-\frac{1}{2}} \\ -2^{-\frac{1}{2}} & 2^{-\frac{1}{2}} \end{bmatrix}\begin{bmatrix} \frac{1}{4} & 0 \\ 0 & \frac{1}{2} \end{bmatrix}\begin{bmatrix} 4 & 0 \\ 0 & 2 \end{bmatrix}\begin{bmatrix} 2^{-\frac{1}{2}} & -2^{-\frac{1}{2}} \\ 2^{-\frac{1}{2}} & 2^{-\frac{1}{2}} \end{bmatrix}\\
+=\begin{bmatrix} 2^{-\frac{1}{2}} & 2^{-\frac{1}{2}} \\ -2^{-\frac{1}{2}} & 2^{-\frac{1}{2}} \end{bmatrix}\begin{bmatrix} 2^{-\frac{1}{2}} & -2^{-\frac{1}{2}} \\ 2^{-\frac{1}{2}} & 2^{-\frac{1}{2}} \end{bmatrix}\\
+=I$
+
+### Exercise 3
+
+In a medical study, length $L$ and weight $W$ of newborn children is considered.
+It was assumed that $(W, L)$ will be modeled through a bivariate normal distribution.
+The following information has been known: the mean weight is $3343[g]$, with
+the standard deviation of $528[g]$, while the mean length is $49.8[cm]$, with the standard
+deviation of $2.5[cm]$. Additionally the correlation between the length and the
+weight has been established and equal to $0.75$. The joint distribution of $(W,L)$ is
+bivariate normal, i.e. $(W,L) \sim N(\mu, \Sigma)$. Perform the following tasks and answer
+the questions:
+
+#### Write explicitly the parameters $\mu$ and $\Sigma$.
+
+$$\mu=\begin{bmatrix} 3343\; g \\ 49.8\; cm \end{bmatrix}
+\\\Sigma=\begin{bmatrix} 528^2 & 0.75\cdot 528\cdot 2.5 \\ 0.75\cdot 528\cdot 2.5 & 2.5^2 \end{bmatrix}= \begin{bmatrix} 278784 & 990 \\ 990 & 6.25 \end{bmatrix}$$
+
+#### Write explicitly the density of the joint distribution.
+$$f_{W,L}(w,l)=\frac{1}{2\pi\sqrt{|\Sigma|}}\exp\left(-\frac{1}{2}(x-\mu)^T\Sigma^{-1}(x-\mu)\right)$$
