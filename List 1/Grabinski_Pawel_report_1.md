@@ -164,10 +164,76 @@ weight has been established and equal to $0.75$. The joint distribution of $(W,L
 bivariate normal, i.e. $(W,L) \sim N(\mu, \Sigma)$. Perform the following tasks and answer
 the questions:
 
-#### Write explicitly the parameters $\mu$ and $\Sigma$.
+#### 1. Write explicitly the parameters $\mu$ and $\Sigma$.
 
 $$\mu=\begin{bmatrix} 3343\; g \\ 49.8\; cm \end{bmatrix}
 \\\Sigma=\begin{bmatrix} 528^2 & 0.75\cdot 528\cdot 2.5 \\ 0.75\cdot 528\cdot 2.5 & 2.5^2 \end{bmatrix}= \begin{bmatrix} 278784 & 990 \\ 990 & 6.25 \end{bmatrix}$$
 
-#### Write explicitly the density of the joint distribution.
-$$f_{W,L}(w,l)=\frac{1}{2\pi\sqrt{|\Sigma|}}\exp\left(-\frac{1}{2}(x-\mu)^T\Sigma^{-1}(x-\mu)\right)$$
+#### 2. Write explicitly the density of the joint distribution.
+$$f_{W,L}(w,l)=\frac{1}{2\pi\sqrt{|\Sigma|}}\exp\left(-\frac{1}{2}(\begin{bmatrix} w \\ l \end{bmatrix}-\mu)^T\Sigma^{-1}(\begin{bmatrix} w \\ l \end{bmatrix}-\mu)\right)$$
+
+$$\sqrt{|\Sigma|}=\sqrt{278784\cdot 6.25-990^2}=\sqrt{762300}=330\sqrt{7}$$
+
+$$f_{W,L}(w,l)=\frac{1}{660\pi\sqrt{7}}\exp\left(-\frac{1}{2}(\begin{bmatrix} w \\ l \end{bmatrix}-\begin{bmatrix} 3343 \\ 49.8 \end{bmatrix})^T\begin{bmatrix} 278784 & 990 \\ 990 & 6.25 \end{bmatrix}^{-1}(\begin{bmatrix} w \\ l \end{bmatrix}-\begin{bmatrix} 3343 \\ 49.8 \end{bmatrix})\right)\\
+=\frac{1}{660\pi\sqrt{7}}\exp\left(-\frac{1}{2}(\begin{bmatrix} w \\ l \end{bmatrix}-\begin{bmatrix} 3343 \\ 49.8 \end{bmatrix})^T\begin{bmatrix} 6.25 & -990 \\ -990 & 278784 \end{bmatrix}(\begin{bmatrix} w \\ l \end{bmatrix}-\begin{bmatrix} 3343 \\ 49.8 \end{bmatrix})\right)$$
+
+#### 3. Find eigenvalues and eigenvectors of the covariance matrix $\Sigma$. Sketch few elipses corresponding to the constant density contours of the joint distributions. Mark on the plot the eigenvectors scaled by the square roots of the corresponding eigenvalues and comment.
+
+To find the eigenvalues, we have to solve the following equation:
+$$\det(\Sigma-\lambda I) = 0\\
+\det\begin{bmatrix} 278784-\lambda & 990 \\ 990 & 6.25-\lambda \end{bmatrix} = (278784-\lambda)(6.25-\lambda)-990^2=1742400-278777.75\lambda+\lambda^2\\
+1742400-278777.75\lambda+\lambda^2=0\\
+\lambda_1=\frac{1115161}{8}+\frac{\sqrt{1243535268721}}{8} \approx 278787.52 \\
+\lambda_2=\frac{1115161}{8}-\frac{\sqrt{1243535268721}}{8} \approx 2.7343405
+$$
+
+To find the eigenvectors, we have to solve the following equations:
+$$\begin{bmatrix} 278784 & 990 \\ 990 & 6.25 \end{bmatrix}\begin{bmatrix} v_{11} \\ v_{12} \end{bmatrix} = 278787.52\begin{bmatrix} v_{11} \\ v_{12} \end{bmatrix}\\
+\begin{bmatrix} 278784 & 990 \\ 990 & 6.25 \end{bmatrix}\begin{bmatrix} v_{21} \\ v_{22} \end{bmatrix} = 2.7343405\begin{bmatrix} v_{21} \\ v_{22} \end{bmatrix}$$
+By solving with a numerical solver, we get the eigenvectors:
+$$v_1 = \begin{bmatrix} 0.999993695 \\ 0.003551149 \end{bmatrix}\\
+v_2 = \begin{bmatrix} -0.003551149 \\ 0.999993695 \end{bmatrix}$$
+Let's approximate them further:
+$$v_1 = \begin{bmatrix} 1 \\ 0.00355 \end{bmatrix}\\
+v_2 = \begin{bmatrix} -0.00355 \\ 1 \end{bmatrix}$$
+
+
+![Elipses plot](E3P3.png)
+
+#### 4. How many parameters characterize a bivariate normal distribution? How many parameters characterize a $p$-dimensional normal distribution?
+
+A bivariate normal distribution is characterized by $5$ parameters: $2$ means, $2$ variances and $1$ correlation coefficient - or equivalently by $3$ elements of the covariance matrix as it is symmetric.
+
+A $p$-dimensional normal distribution is characterized by $p$ means, $p$ variances and $\frac{p(p-1)}{2}$ correlation coefficients - as again the covariance matrix is symmetric, so we count only the diagonal and upper half of the matrix that is:
+$$p+p-1+\dots+2+1=\frac{p-1}{2}\cdot p=\frac{p(p+1)}{2}=p+\frac{p(p-1)}{2}$$
+
+Together it is:
+$$p+\frac{p(p+1)}{2}=\frac{p(p+3)}{2}$$
+
+We need $\frac{p(p+3)}{2}$ parameters.
+
+#### 5. What is the distribution of $L$? Give its name and parameters.
+
+The distribution of $L$ is a normal distribution with the mean $\mu_L=49.8$ and the variance $\sigma_L^2=6.25$.
+
+#### 6. Suppose that the hospital records of a new-born child was lost. Give a best guess for the value of their length. Provide with accuracy bounds of your ‘educated’ guess based on the $3-\sigma$ rule.
+
+### Exercise 4
+In the setup of the previous problem, assume that it was reported by the
+mother of the child that weight was $4025 g$.
+
+#### 1. What is the distribution of $L$ given this additional information? Give its name and parameters.
+
+#### 2. Improve your previous guess and provide with accuracy limits.
+
+#### 3. Compare the answers from this and previous problems and comment how additional information affected the prediction value and accuracy.
+
+### Exercise 5
+
+Let $X_1$, $X_2$, and $X_3$ be independent $N(\mu,\Sigma)$ random vectors of a dimension $p$.
+
+#### 1. Find the distribution of each of the following vectors:
+$$V_1=\frac{1}{4}X_1-\frac{1}{2}X_2+\frac{1}{4}X_3\\
+V_2=\frac{1}{4}X_1-\frac{1}{2}X_2-\frac{1}{4}X_3$$
+
+#### 2. Find the joint distribution of the above vectors.

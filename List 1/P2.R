@@ -55,7 +55,6 @@ for (i in 1:4) {
 print(covariance - reconstructed_matrix)
 print(round(covariance - reconstructed_matrix, 9))
 
-
 parent_data_ptransformed <- as.data.frame(as.matrix(parent_data) %*% decomposition$vectors)
 parent_data_ptransformed
 
