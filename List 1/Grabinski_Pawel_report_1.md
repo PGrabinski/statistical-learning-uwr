@@ -237,3 +237,20 @@ $$V_1=\frac{1}{4}X_1-\frac{1}{2}X_2+\frac{1}{4}X_3\\
 V_2=\frac{1}{4}X_1-\frac{1}{2}X_2-\frac{1}{4}X_3$$
 
 #### 2. Find the joint distribution of the above vectors.
+
+## Project 1: Weight and length of newborn children
+
+Health services and health insurance companies are interested in determining what kind
+of medical examinations and diagnostic procedures should be administered to a newborn
+child. In one approach, there is a score system based on which it is determined when a
+child is healthy and does not require any special attention or when he/she is not in which
+case a series additional medical tests are performed.
+Weight and length of a newborn child are most standard indicators of the health of a
+child. In order to decide on the score the following procedure is considered. If the weight
+and length fall outside 95% of the typical values for the population, the score of zero is
+given. If the measurements are falling in the category between 75% and 95% the score is
+one. In all other cases the score of two is assigned.
+A random sample of records for 736 recently born children (singleton and not prematurely
+born) has been considered from hospital across a certain region. The records contain a
+large variety of information but extraction of weight and height data are given in the file
+WeightHeight.txt.
