@@ -236,6 +236,53 @@ Let $X_1$, $X_2$, and $X_3$ be independent $N(\mu,\Sigma)$ random vectors of a d
 $$V_1=\frac{1}{4}X_1-\frac{1}{2}X_2+\frac{1}{4}X_3\\
 V_2=\frac{1}{4}X_1-\frac{1}{2}X_2-\frac{1}{4}X_3$$
 
+First, let's construct a new $X$ vectot that is $3p$-dimensional and is a concatenation of $X_1$, $X_2$ and $X_3$:
+$$X=\begin{bmatrix} X_1 \\ X_2 \\ X_3 \end{bmatrix}$$
+
+It's mean is:
+$$\mu_X=\begin{bmatrix} \mu \\ \mu \\ \mu \end{bmatrix}$$
+And its covariance matrix is:
+$$\Sigma_X=\begin{bmatrix} \Sigma & 0 & 0 \\ 0 & \Sigma & 0 \\ 0 & 0 & \Sigma \end{bmatrix}$$
+
+Then, we can construct the matrix $A_1$ that is:
+$$A_1=\begin{bmatrix} \frac{1}{4} I_{p\times p} & -\frac{1}{2}I_{p\times p} & \frac{1}{4}I_{p\times p}\end{bmatrix}$$
+And $I_{p\times p}$ is $p\times p-$dimensional identity matrix. It's diemnsion is $p\times 3p$.
+
+From the lecture we know that the distribution, i.e. the mean vector and the covariance matrix, of $X$ changes as:
+
+$$ V_1=A_1X \sim N(A_1\mu, A_1\Sigma A_1^T)$$
+
+Hence,
+$$\mu_{V_1}=A_1\mu_X=\begin{bmatrix} \frac{1}{4} I_{p\times p} & -\frac{1}{2} I_{p\times p} & \frac{1}{4}I_{p\times p}\end{bmatrix}\begin{bmatrix} \mu \\ \mu \\ \mu \end{bmatrix}= \frac{1}{4}I_{p\times p}\mu-\frac{1}{2}I_{p\times p}\mu+\frac{1}{4}I_{p\times p}\mu=(\frac{1}{4}-\frac{1}{2}+\frac{1}{4})\mu=0$$
+
+And:
+$$\Sigma_{V_1}=A_1\Sigma_XA_1^T=\begin{bmatrix} \frac{1}{4} I_{p\times p} & -\frac{1}{2} I_{p\times p} & \frac{1}{4}I_{p\times p}\end{bmatrix}\begin{bmatrix} \Sigma & 0 & 0 \\ 0 & \Sigma & 0 \\ 0 & 0 & \Sigma \end{bmatrix}\begin{bmatrix} \frac{1}{4} I_{p\times p} & -\frac{1}{2} I_{p\times p} & \frac{1}{4}I_{p\times p}\end{bmatrix}^T\\
+=\begin{bmatrix} \frac{1}{4} I_{p\times p} & -\frac{1}{2} I_{p\times p} & \frac{1}{4}I_{p\times p}\end{bmatrix}\begin{bmatrix} \Sigma & 0 & 0 \\ 0 & \Sigma & 0 \\ 0 & 0 & \Sigma \end{bmatrix}\begin{bmatrix} \frac{1}{4} I_{p\times p} \\ -\frac{1}{2} I_{p\times p} \\ \frac{1}{4}I_{p\times p}\end{bmatrix}\\
+=\begin{bmatrix} \frac{1}{4} I_{p\times p} & -\frac{1}{2} I_{p\times p} & \frac{1}{4}I_{p\times p}\end{bmatrix}\begin{bmatrix} \frac{1}{4}\Sigma I_{p\times p} \\ -\frac{1}{2} \Sigma I_{p\times p} \\ \frac{1}{4}\Sigma I_{p\times p}\end{bmatrix}\\
+=\begin{bmatrix} \frac{1}{4} I_{p\times p} & -\frac{1}{2} I_{p\times p} & \frac{1}{4}I_{p\times p}\end{bmatrix}\begin{bmatrix} \frac{1}{4} \Sigma \\ -\frac{1}{2} \Sigma  \\ \frac{1}{4}\Sigma \end{bmatrix}\\
+=\left(\frac{1}{4}\right)^2 I_{p\times p}\Sigma + \left(\frac{1}{2}\right)^2 I_{p\times p}\Sigma + \left(\frac{1}{4}\right)^2 I_{p\times p}\Sigma\\
+=\frac{3}{8}\Sigma$$
+Finally, we have:
+$$ V_1=A_1X \sim N(0_{p\times 1}, \frac{3}{8}\Sigma)$$
+
+Analogically, the $A_2$ matrix is:
+$$A_2=\begin{bmatrix} \frac{1}{4} I_{p\times p} & -\frac{1}{2}I_{p\times p} & -\frac{1}{4}I_{p\times p}\end{bmatrix}$$
+
+Then, the mean becomes:
+$$\mu_{V_2}=A_2\mu_X=\begin{bmatrix} \frac{1}{4} I_{p\times p} & -\frac{1}{2} I_{p\times p} & -\frac{1}{4}I_{p\times p}\end{bmatrix}\begin{bmatrix} \mu \\ \mu \\ \mu \end{bmatrix}\\
+= \frac{1}{4}I_{p\times p}\mu-\frac{1}{2}I_{p\times p}\mu-\frac{1}{4}I_{p\times p}\mu=(\frac{1}{4}-\frac{1}{2}-\frac{1}{4})\mu=-\frac{1}{2}\mu$$
+
+And the covariance matrix:
+$$\Sigma_{V_2}=A_2\Sigma_X A_2^T=\begin{bmatrix} \frac{1}{4} I_{p\times p} & -\frac{1}{2} I_{p\times p} & -\frac{1}{4}I_{p\times p}\end{bmatrix}\begin{bmatrix} \Sigma & 0 & 0 \\ 0 & \Sigma & 0 \\ 0 & 0 & \Sigma \end{bmatrix}\begin{bmatrix} \frac{1}{4} I_{p\times p} & -\frac{1}{2} I_{p\times p} & -\frac{1}{4}I_{p\times p}\end{bmatrix}^T\\
+=\begin{bmatrix} \frac{1}{4} I_{p\times p} & -\frac{1}{2} I_{p\times p} & -\frac{1}{4}I_{p\times p}\end{bmatrix}\begin{bmatrix} \Sigma & 0 & 0 \\ 0 & \Sigma & 0 \\ 0 & 0 & \Sigma \end{bmatrix}\begin{bmatrix} \frac{1}{4} I_{p\times p} \\ -\frac{1}{2} I_{p\times p} \\ -\frac{1}{4}I_{p\times p}\end{bmatrix}\\
+=\begin{bmatrix} \frac{1}{4} I_{p\times p} & -\frac{1}{2} I_{p\times p} & -\frac{1}{4}I_{p\times p}\end{bmatrix}\begin{bmatrix} \frac{1}{4}\Sigma I_{p\times p} \\ -\frac{1}{2} \Sigma I_{p\times p} \\ -\frac{1}{4}\Sigma I_{p\times p}\end{bmatrix}\\
+=\begin{bmatrix} \frac{1}{4} I_{p\times p} & -\frac{1}{2} I_{p\times p} & -\frac{1}{4}I_{p\times p}\end{bmatrix}\begin{bmatrix} \frac{1}{4} \Sigma \\ -\frac{1}{2} \Sigma  \\ -\frac{1}{4}\Sigma \end{bmatrix}\\
+=\left(\frac{1}{4}\right)^2 I_{p\times p}\Sigma + \left(\frac{1}{2}\right)^2 I_{p\times p}\Sigma + \left(\frac{1}{4}\right)^2 I_{p\times p}\Sigma\\
+=\frac{3}{8}\Sigma$$
+
+The distribution of $V_2$ is:
+$$ V_2=A_2X \sim N(-\frac{1}{2}\mu, \frac{3}{8}\Sigma)$$
+
 #### 2. Find the joint distribution of the above vectors.
 
 ## Project 1: Weight and length of newborn children
