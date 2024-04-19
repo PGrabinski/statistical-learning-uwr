@@ -197,6 +197,7 @@ Let's approximate them further:
 $$v_1 = \begin{bmatrix} 1 \\ 0.00355 \end{bmatrix}\\
 v_2 = \begin{bmatrix} -0.00355 \\ 1 \end{bmatrix}$$
 
+As noted during the lecture, the eigenvectors scaled by the square root of the eigenvalues give the directions of the axis of the elipses. The elipses are the constant density contours of the joint distribution. The vectors are orthogonal, but due to the radically diffent orders of magnitude of the eigenvalues and scales on the plot we can't see that.
 
 ![Elipses plot](E3P3.png)
 
