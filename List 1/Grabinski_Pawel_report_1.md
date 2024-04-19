@@ -218,6 +218,14 @@ As stated during the lecture, distribution of a subset of random variables from 
 
 #### 6. Suppose that the hospital records of a new-born child was lost. Give a best guess for the value of their length. Provide with accuracy bounds of your ‘educated’ guess based on the $3-\sigma$ rule.
 
+The best guess for the length of the child is the mean of the distributionn as the probablity density has the highest value there, i.e. $49.8\; cm$.
+
+The accuracy bounds are given by the $3-\sigma$ rule, that is:
+$$49.8-3\cdot 2.5\;\text{cm}\leq L \leq 49.8+3\cdot2.5\;\text{cm}\\
+L\in \left[
+42.3\;\text{cm}, 57.3\;\text{cm}    
+\right]$$
+
 ### Exercise 4
 In the setup of the previous problem, assume that it was reported by the
 mother of the child that weight was $4025 g$.
