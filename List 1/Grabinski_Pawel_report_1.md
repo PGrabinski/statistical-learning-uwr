@@ -214,7 +214,7 @@ We need $\frac{p(p+3)}{2}$ parameters.
 
 #### 5. What is the distribution of $L$? Give its name and parameters.
 
-The distribution of $L$ is a normal distribution with the mean $\mu_L=49.8$ and the variance $\sigma_L^2=6.25$.
+As stated during the lecture, distribution of a subset of random variables from a multivariate normal distribution are also normal. Hence, the distribution of $L$ is a normal distribution with the mean $\mu_L=49.8$ and the variance $\sigma_L^2=6.25$.
 
 #### 6. Suppose that the hospital records of a new-born child was lost. Give a best guess for the value of their length. Provide with accuracy bounds of your ‘educated’ guess based on the $3-\sigma$ rule.
 
