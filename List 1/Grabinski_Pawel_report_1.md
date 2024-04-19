@@ -284,6 +284,22 @@ The distribution of $V_2$ is:
 $$ V_2=A_2X \sim N(-\frac{1}{2}\mu, \frac{3}{8}\Sigma)$$
 
 #### 2. Find the joint distribution of the above vectors.
+In this case, the matrix $A$ is:
+$$A=\begin{bmatrix} A_1 \\ A_2 \end{bmatrix}=\begin{bmatrix} \frac{1}{4} I_{p\times p} & -\frac{1}{2}I_{p\times p} & \frac{1}{4}I_{p\times p} \\ \frac{1}{4} I_{p\times p} & -\frac{1}{2}I_{p\times p} & -\frac{1}{4}I_{p\times p} \end{bmatrix}$$
+
+Then, the mean vector is:
+$$\mu_V=A\mu_X=\begin{bmatrix} \frac{1}{4} I_{p\times p} & -\frac{1}{2} I_{p\times p} & \frac{1}{4}I_{p\times p} \\ \frac{1}{4} I_{p\times p} & -\frac{1}{2} I_{p\times p} & -\frac{1}{4}I_{p\times p} \end{bmatrix}\begin{bmatrix} \mu \\ \mu \\ \mu \end{bmatrix}=\begin{bmatrix} 0 \\ -\frac{1}{2}\mu \end{bmatrix}$$
+
+And the covariance matrix is:
+$$\Sigma_V=A\Sigma_X A^T\\
+=\begin{bmatrix} \frac{1}{4} I_{p\times p} & -\frac{1}{2} I_{p\times p} & \frac{1}{4}I_{p\times p} \\ \frac{1}{4} I_{p\times p} & -\frac{1}{2} I_{p\times p} & -\frac{1}{4}I_{p\times p} \end{bmatrix}\begin{bmatrix} \Sigma & 0 & 0 \\ 0 & \Sigma & 0 \\ 0 & 0 & \Sigma \end{bmatrix}\begin{bmatrix} \frac{1}{4} I_{p\times p} & -\frac{1}{2}I_{p\times p} & \frac{1}{4}I_{p\times p} \\ \frac{1}{4} I_{p\times p} & -\frac{1}{2}I_{p\times p} & -\frac{1}{4}I_{p\times p} \end{bmatrix}^T\\
+=\begin{bmatrix} \frac{1}{4} I_{p\times p} & -\frac{1}{2} I_{p\times p} & \frac{1}{4}I_{p\times p} \\ \frac{1}{4} I_{p\times p} & -\frac{1}{2} I_{p\times p} & -\frac{1}{4}I_{p\times p} \end{bmatrix}\begin{bmatrix} \Sigma & 0 & 0 \\ 0 & \Sigma & 0 \\ 0 & 0 & \Sigma \end{bmatrix}\begin{bmatrix} \frac{1}{4} I_{p\times p} & \frac{1}{4}I_{p\times p} \\ -\frac{1}{2}I_{p\times p} & -\frac{1}{2} I_{p\times p} \\ \frac{1}{4}I_{p\times p} & -\frac{1}{4}I_{p\times p} \end{bmatrix}\\
+=\begin{bmatrix} \frac{1}{4} I_{p\times p} & -\frac{1}{2} I_{p\times p} & \frac{1}{4}I_{p\times p} \\ \frac{1}{4} I_{p\times p} & -\frac{1}{2} I_{p\times p} & -\frac{1}{4}I_{p\times p} \end{bmatrix}\begin{bmatrix} \frac{1}{4} \Sigma & \frac{1}{4}\Sigma \\ -\frac{1}{2}\Sigma & -\frac{1}{2} \Sigma \\ \frac{1}{4}\Sigma & -\frac{1}{4}\Sigma \end{bmatrix}\\
+=\begin{bmatrix} \left(\frac{1}{4}\right)^2 \Sigma +\left(\frac{1}{2}\right)^2 \Sigma + \left(\frac{1}{4}\right)^2\Sigma  & \left(\frac{1}{4}\right)^2 \Sigma +\left(\frac{1}{2}\right)^2 \Sigma - \left(\frac{1}{4}\right)^2\Sigma \\ \left(\frac{1}{4}\right)^2 \Sigma +\left(\frac{1}{2}\right)^2 \Sigma -\left(\frac{1}{4}\right)^2\Sigma & \left(\frac{1}{4}\right)^2 \Sigma +\left(\frac{1}{2}\right)^2 \Sigma + \left(\frac{1}{4}\right)^2\Sigma \end{bmatrix} \\
+=\begin{bmatrix} \frac{3}{8}\Sigma & \frac{1}{4}\Sigma \\ \frac{1}{4}\Sigma  & \frac{3}{8}\Sigma  \end{bmatrix}$$
+
+Finally, we have:
+$$ V=A X \sim N\left(\begin{bmatrix} 0 \\ -\frac{1}{2}\mu \end{bmatrix}, \begin{bmatrix} \frac{3}{8}\Sigma & \frac{1}{4}\Sigma \\ \frac{1}{4}\Sigma  & \frac{3}{8}\Sigma  \end{bmatrix}\right)$$
 
 ## Project 1: Weight and length of newborn children
 
