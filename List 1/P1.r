@@ -9,10 +9,10 @@ library(patchwork)
 
 children_data <- read.table("List 1/WeightLength.txt", header=TRUE)
 means <- colMeans(children_data)
-means
+round(means, 2)
 
 covariance <- cov(children_data)
-covariance
+round(covariance, 2)
 
 cor(children_data)
 
@@ -58,6 +58,9 @@ ggplot() +
 ggsave("List 1/children_classified.png", width = 6, height = 4, units = "in")
 
 decomposition <- eigen(covariance)
+decomposition
+
+decomposition$vectors <- decomposition$vectors * (-1)
 decomposition
 
 decomposition$values[1] * decomposition$vectors[,1] %*% t(decomposition$vectors[,1]) 

@@ -326,3 +326,58 @@ A random sample of records for 736 recently born children (singleton and not pre
 born) has been considered from hospital across a certain region. The records contain a
 large variety of information but extraction of weight and height data are given in the file
 WeightHeight.txt.
+
+### Part 1
+#### 1. Using the data estimate the mean and the covariance for the length and the weight of children.
+
+As given in the notes from the lecture, the sample mean is:
+$$\bar{\mu}=\frac{1}{n_{sample}}\sum_{i}^{n_{sample}}\begin{bmatrix} W_i \\ L_i \end{bmatrix}$$
+In our case:
+$$\bar{\mu}=\begin{bmatrix} 3233.55\; g \\ 49.24\; cm \end{bmatrix}$$
+
+Similarly, the sample covariance matrix is:
+$$
+\bar{\Sigma}=\frac{1}{n_{sample}-1}\sum_{i}^{n_{sample}}\left(\begin{bmatrix} W_i \\ L_i \end{bmatrix}-\bar{\mu}\right)\left(\begin{bmatrix} W_i \\ L_i \end{bmatrix}-\bar{\mu}\right)^T
+$$
+For this data it is:
+$$
+\bar{\Sigma} = \begin{bmatrix}220276.7 & 915.3 \\ 915.3 & 4.44 \end{bmatrix}
+$$
+#### 2. Verify graphically normal distribution of the data. Use a scatterplot and qq-plots for the marginal distributions.
+
+The scatter plot of the data is:
+![Children data scatter plot](children_data.png)
+We can see that the data is highly correlated.
+
+The qq-plot for the length marginal distribution:
+![Children length qq plot](length_qqplot.png)
+
+The qq-plot for the weight marginal distribution:
+![Children weight qq plot](weight_qqplot.png)
+
+We can see that the data is normally distributed.
+
+#### 3. Find the ellipsoids that would serve classification regions for scores as described above.
+
+![Children ellipses](children_classified.png)
+
+#### 4. How many children would score zero, one, and two, respectively? Illustrate this classification on the graphs.
+
+| Score | Number of children |
+|-------|--------------------|
+| 0     | 38                 |
+| 1     | 157                |
+| 2     | 541                |
+
+#### 5. Find the spectral decomposition of the estimated covariance matrix.
+The spectral decomposition of the estimated covariance matrix is:
+$$\bar{\Sigma} = 2.2\cdot 10^5\begin{bmatrix}1\\ 4.15\cdot 10^{-3}  \end{bmatrix}\begin{bmatrix}1\\ 4.15\cdot 10^{-3}  \end{bmatrix}^T
++ 0.64 \begin{bmatrix}-4.15\cdot 10^{-3}\\ 1  \end{bmatrix}\begin{bmatrix}-4.15\cdot 10^{-3}\\ 1  \end{bmatrix}^T\\
+=\begin{bmatrix} 220276.6577 & 915.298170 \\ 915.2982 & 3.803266 \end{bmatrix} + \begin{bmatrix} 1.105078\cdot 10^{-5} & -2.659494\cdot 10^{-3} \\ -2.659494\cdot 10^{-3} & 0.640036621 \end{bmatrix}$$
+
+#### 6. Plot the data transformed according to $P^TX$, where $P$ is the matrix made of the eigenvectors standing as the columns. Interpret the transformed data.
+
+The transformed data seems to be decorellated - the constant-density elipsoids would be much more round than the original ones. The data is transformed into the eigenvector space, where the covariance matrix is diagonal.
+
+![Children transformed data](deentanlged_children.png)
+
