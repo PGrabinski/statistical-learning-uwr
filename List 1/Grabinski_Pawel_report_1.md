@@ -381,3 +381,190 @@ The transformed data seems to be decorellated - the constant-density elipsoids w
 
 ![Children transformed data](deentanlged_children.png)
 
+### Part 2
+Additionally to weight and length of a child, also the height of parents is included in the records. In order to tune the procedure of scoring the height of parents can be also used. The ParentsWeightLength.txt file contains this information.
+
+#### 1. Using the data estimate the mean and the covariance for all four variables.
+
+The estimated means:
+<!-- FatherHeight MotherHeight       Weight       Length 
+   177.41603    166.91957   3233.54511     49.23764  -->
+|Variable     |     Mean|
+|:------------|--------:|
+|Weight       | 3233.545|
+|Length       |   49.238|
+|FatherHeight |  177.416|
+|MotherHeight |  166.920|
+
+The estimated covariance matrix:
+|             |     Weight|  Length| FatherHeight| MotherHeight|
+|:------------|----------:|-------:|------------:|------------:|
+|Weight       | 220276.658| 915.296|      931.859|      827.288|
+|Length       |    915.296|   4.443|        3.290|        2.852|
+|FatherHeight |    931.859|   3.290|       12.612|        0.631|
+|MotherHeight |    827.288|   2.852|        0.631|        9.772|
+
+#### 2. Verify graphically normal distribution of the data. Use a scatterplot and qq-plots for the marginal distributions.
+
+In the plot below, we can see that the data seems to be normally distributed. The correlation between the length and weight of the child and the parents' heights seems to be lower than between the length and weight of the child.
+
+![Parents data scatter plot](parents_data.png)
+
+The qq-plot for the length marginal distribution:
+![Parents length qq plot](parents_length_qqplot.png)
+
+The qq-plot for the weight marginal distribution:
+![Parents weight qq plot](parents_weight_qqplot.png)
+
+The qq-plot for the father height marginal distribution:
+![Parents father height qq plot](father_height_qqplot.png)
+
+The qq-plot for the mother height marginal distribution:
+![Parents mother height qq plot](mother_height_qqplot.png)
+
+Judging by the quantile plots, the data seems to be normally distributed.
+
+#### 3. Identify the conditional distribution of the weight and length of a child given the heights of parents. Find an estimate of the covariance matrix of the conditional distribution and compare it with the original unconditional covariance.
+
+From the lecture we know that the conditional distribution of a multivariate normal distribution is given as:
+$$\mathbf{X}_1 \mid \mathbf{X}_2=\mathbf{x}_2 \sim \mathcal{N}_q\left(\mu_1+\boldsymbol{\Sigma}_{12} \boldsymbol{\Sigma}_{22}^{-1}\left(\mathbf{x}_2-\boldsymbol{\mu}_2\right), \boldsymbol{\Sigma}_{11}-\boldsymbol{\Sigma}_{12} \boldsymbol{\Sigma}_{22}^{-1} \boldsymbol{\Sigma}_{21}\right)$$
+
+Where $X\sim N_p(\mu, \Sigma)$, $X_1$ is the $q-$dimensional subvector of $X$ and $X_2$ is the $(p-q)-$dimensional subvector of $X$:
+$$X=\begin{bmatrix} X_1 \\ X_2 \end{bmatrix}$$
+
+Smiliarly the mean vector and the covariance matrix are:
+$$\mu=\begin{bmatrix} \mu_1 \\ \mu_2 \end{bmatrix}\quad
+\Sigma=\begin{bmatrix} \Sigma_{11} & \Sigma_{12} \\ \Sigma_{21} & \Sigma_{22} \end{bmatrix}$$
+
+In our case, the weight and length of the child are $X_1$ and the heights of the parents are $X_2$. 
+
+The means become:
+$$\mu_1=\begin{bmatrix} 3233.55 \\ 49.24 \end{bmatrix}\quad \mu_2=\begin{bmatrix} 177.42 \\ 166.92 \end{bmatrix}$$
+
+The covariance matrices become:
+$$\Sigma_{11}=\begin{bmatrix}220276.7 & 915.3 \\ 915.3 & 4.44 \end{bmatrix}
+\Sigma_{12}=\begin{bmatrix}931.859 & 827.288 \\ 3.290 & 2.852 \end{bmatrix}\\
+\Sigma_{21}=\begin{bmatrix}931.859 & 3.290 \\ 827.288 & 2.852 \end{bmatrix}\quad
+\Sigma_{22}=\begin{bmatrix}12.612 & 0.631 \\ 0.631 & 9.772 \end{bmatrix}$$
+
+The new mean is:
+$$\tilde{\mu}= \mu_1+\Sigma_{12}\Sigma_{22}^{-1}(x_2 -\mu_2)\\
+=\begin{bmatrix} 3233.55 \\ 49.24 \end{bmatrix}+ \begin{bmatrix}931.859 & 827.288 \\ 3.290 & 2.852 \end{bmatrix}\begin{bmatrix}12.612 & 0.631 \\ 0.631 & 9.772 \end{bmatrix}^{-1}\left(x_2-\begin{bmatrix} 177.42 \\ 166.92 \end{bmatrix}\right)\\
+=\begin{bmatrix} 3233.55 \\ 49.24 \end{bmatrix}+ \begin{bmatrix} 69.876 & 80.146\\ 0.247 & 0.276\end{bmatrix}\left(x_2-\begin{bmatrix} 177.42 \\ 166.92 \end{bmatrix}\right)
+$$
+
+The new covariance matrix is:
+$$\tilde{\Sigma}=\Sigma_{11}-\Sigma_{12}\Sigma_{22}^{-1}\Sigma_{21}
+=\begin{bmatrix}88857.9955 & 456.846078\\456.8461 & 2.843767\end{bmatrix}
+$$
+
+The conditional distribution of the weight and length of a child given the heights of parents is:
+$$\mathbf{X}_1 \mid \mathbf{X}_2=\mathbf{x}_2 \sim \mathcal{N}_q\left(\tilde{\mu}(x_2), \tilde{\Sigma}\right)$$
+
+Taking the element-wise division of $\tilde{\Sigma}$ by $\bar{\Sigma}$ we get:
+|       | Weight| Length|
+|:------|------:|------:|
+|Weight |  0.403|  0.499|
+|Length |  0.499|  0.640|
+
+That means the conditional distribution is more concentrated around the mean.
+
+#### 4. How the ellipsoids based on the conditional distribution will look like?
+
+We consider the conditional distribution of the weight and length of a child given the heights of parents equal to their means $x_2=\mu_2$, so the $\tilde{\mu}= \mu_1$.
+
+![Comparison of the ellipsoids](ellipsoids_comparison.png)
+
+The red and dark green are $0.95$ and $0.75$ ellipsoids for the unconditional distribution, while the orange and light green are $0.95$ and $0.75$ ellipsoids for the conditional distribution.
+
+We can see that first of all the ellipsoids of the conditional distribution are more concentrated around the mean. Secondly, the correlation between the weight and length of the child is higher in the conditional distribution as can be inferred from the change of the covariance matrix as the diagonal elements decreased more than the off-diagonal elements.
+
+#### 5. How many children would score zero, one, and two, respectively? Illustrate this classification on the graph and compare with the one obtained without considering the heights of parents.
+
+|Scores  | Occurances|
+|:-------|----------:|
+|0       |         40|
+|1       |        137|
+|2       |        559|
+
+![Classification based on the conditional distribution](parents_classified.png)
+
+The elipsoids on the graph are the $0.95$ and $0.75$ elipsoids of the conditional distribution with the center at the unconditional sample mean. The classification does not allign with the given elipsoids as the classificaiton depends on the conditional distribution, i.e. the height of the parents.
+
+#### 6. Suppose that the father of a child is 185[cm] tall and mother is 178[cm] tall. Plot the classification ellipsoids for their child.
+
+![Classification based on the conditional distribution for the given parents' heights](ellipsoids_conditional.png)
+
+#### 7. Find spectral decomposition of the estimated covariance matrix for the complete set of the data.
+
+The eigenvalues are:
+|    $\lambda_i$|
+|------------:|
+| 2.202875e+05|
+| 1.070822e+01|
+| 4.788382e+00|
+| 4.783659e-01|
+
+The eigenvecotrs are:
+|     $v_1$|      $v_2$|      $v_3$|      $v_4$|
+|---------:|----------:|----------:|----------:|
+| 0.9999754|  0.0012288|  0.0046024|  0.0051550|
+| 0.0041551|  0.0136742|  0.1925554| -0.9811820|
+| 0.0042304| -0.8164120| -0.5643934| -0.1221213|
+| 0.0037556|  0.5773066| -0.8027212| -0.1494712|
+
+The decomposition is:
+$$\bar{\Sigma}=\sum_i \lambda_i v_iv_i^T\\
+= 2.2\cdot 10^5\begin{bmatrix}1\\ 4.15\cdot 10^{-3}\\ 4.23\cdot 10^{-3}\\ 3.76\cdot 10^{-3}  \end{bmatrix}\begin{bmatrix}1\\ 4.15\cdot 10^{-3}\\ 4.23\cdot 10^{-3}\\ 3.76\cdot 10^{-3}  \end{bmatrix}^T + 10.71\begin{bmatrix}1.12\cdot 10^{-3}\\ 1.37\cdot 10^{-2}\\ -0.816\\ 0.577  \end{bmatrix}\begin{bmatrix}1.12\cdot 10^{-3}\\ 1.37\cdot 10^{-2}\\ -0.816\\ 0.577  \end{bmatrix}^T\\
++ 4.79\begin{bmatrix}4.60\cdot 10^{-3}\\ 0.192\\ -0.564\\ -0.803  \end{bmatrix}\begin{bmatrix}4.60\cdot 10^{-3}\\ 0.192\\ -0.564\\ -0.803  \end{bmatrix}^T + 0.48\begin{bmatrix}5.16\cdot 10^{-3}\\ -0.981\\ -0.122\\ -0.149  \end{bmatrix}\begin{bmatrix}5.16\cdot 10^{-3}\\ -0.981\\ -0.122\\ -0.149  \end{bmatrix}^T\\
+= \begin{bmatrix} 220276.6575 & 915.293507 & 931.882445 & 827.298245\\ 915.2935 & 3.803227 & 3.872158 & 3.437589\\ 931.8824 & 3.872158 & 3.942337 & 3.499893\\ 827.2982 & 3.437589 & 3.499893 & 3.107104 \end{bmatrix}
++ \begin{bmatrix} 0.0000162 & 0.0001799 & -0.0107427 & 0.0075964\\ 0.0001799 & 0.0020023 & -0.1195446 & 0.0845332\\ -0.0107427 & -0.1195446 & 7.1373337 & -5.0469986\\ 0.0075964 & 0.0845332 & -5.0469986 & 3.5688671 \end{bmatrix}\\
++ \begin{bmatrix} 0.0001014 & 0.0042435 & -0.012438 & -0.0176903\\ 0.0042435 & 0.1775416 & -0.520387 & -0.7401320\\ -0.0124380 & -0.5203870 & 1.525291 & 2.1693794\\ -0.0176903 & -0.7401320 & 2.169379 & 3.0854484 \end{bmatrix}
++ \begin{bmatrix} 0.0000127 & -0.0024196 & -0.0003011 & -0.0003686\\ -0.0024196 & 0.4605315 & 0.0573193 & 0.0701564\\ -0.0003011 & 0.0573193 & 0.0071342 & 0.0087319\\ -0.0003686 & 0.0701564 & 0.0087319 & 0.0106875 \end{bmatrix}\\
+= \begin{bmatrix} 220276.6577 & 915.295511 & 931.8589629 & 827.2877829\\ 915.2955 & 4.443303 & 3.2895454 & 2.8521470\\ 931.8590 & 3.289545 & 12.6120963 & 0.6310056\\ 827.2878 & 2.852147 & 0.6310056 & 9.7721065 \end{bmatrix}
+$$
+<!--
+\lambda_1 v_1v_1^T
+|            |           |           |           |
+|-----------:|----------:|----------:|----------:|
+| 220276.6575| 915.293507| 931.882445| 827.298245|
+|    915.2935|   3.803227|   3.872158|   3.437589|
+|    931.8824|   3.872158|   3.942337|   3.499893|
+|    827.2982|   3.437589|   3.499893|   3.107104|
+
+\lambda_2 v_2v_2^T
+|           |           |           |           |
+|----------:|----------:|----------:|----------:|
+|  0.0000162|  0.0001799| -0.0107427|  0.0075964|
+|  0.0001799|  0.0020023| -0.1195446|  0.0845332|
+| -0.0107427| -0.1195446|  7.1373337| -5.0469986|
+|  0.0075964|  0.0845332| -5.0469986|  3.5688671|
+
+\lambda_3 v_3v_3^T
+|           |           |          |           |
+|----------:|----------:|---------:|----------:|
+|  0.0001014|  0.0042435| -0.012438| -0.0176903|
+|  0.0042435|  0.1775416| -0.520387| -0.7401320|
+| -0.0124380| -0.5203870|  1.525291|  2.1693794|
+| -0.0176903| -0.7401320|  2.169379|  3.0854484|
+
+\lambda_4 v_4v_4^T
+|           |           |           |           |
+|----------:|----------:|----------:|----------:|
+|  0.0000127| -0.0024196| -0.0003011| -0.0003686|
+| -0.0024196|  0.4605315|  0.0573193|  0.0701564|
+| -0.0003011|  0.0573193|  0.0071342|  0.0087319|
+| -0.0003686|  0.0701564|  0.0087319|  0.0106875| -->
+
+<!--
+\bar{\Sigma}
+|            |           |            |            |
+|-----------:|----------:|-----------:|-----------:|
+| 220276.6577| 915.295511| 931.8589629| 827.2877829|
+|    915.2955|   4.443303|   3.2895454|   2.8521470|
+|    931.8590|   3.289545|  12.6120963|   0.6310056|
+|    827.2878|   2.852147|   0.6310056|   9.7721065| -->
+
+#### 8. Transforme the data the according to PTX. Plot scatter plots of the transformed data.
+
+![Transformed data](deentanlged_parent.png)
