@@ -13,7 +13,9 @@
           "ms-azuretools.vscode-docker",
           "GitHub.copilot",
           "GitHub.copilot-chat",
-          "REditorSupport.r"
+          "REditorSupport.r",
+          "qinjia.md2pdf",
+          "mhutchie.git-graph"
         ]
       }
     },
