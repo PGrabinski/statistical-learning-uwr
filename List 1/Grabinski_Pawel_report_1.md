@@ -315,7 +315,7 @@ $$ V=A X \sim N\left(\begin{bmatrix} 0 \\ -\frac{1}{2}\mu \end{bmatrix}, \begin{
 Health services and health insurance companies are interested in determining what kind
 of medical examinations and diagnostic procedures should be administered to a newborn
 child. In one approach, there is a score system based on which it is determined when a
-child is healthy and does not require any special attention or when he/she is not in which
+child is healthy and does not require any special attention or when it is not in which
 case a series additional medical tests are performed.
 Weight and length of a newborn child are most standard indicators of the health of a
 child. In order to decide on the score the following procedure is considered. If the weight
