@@ -565,6 +565,6 @@ $$
 |    931.8590|   3.289545|  12.6120963|   0.6310056|
 |    827.2878|   2.852147|   0.6310056|   9.7721065| -->
 
-#### 8. Transforme the data the according to PTX. Plot scatter plots of the transformed data.
+#### 8. Transforme the data the according to $P^TX$. Plot scatter plots of the transformed data.
 
 ![Transformed data](deentanlged_parent.png)
