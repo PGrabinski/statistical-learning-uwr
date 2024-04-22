@@ -583,11 +583,3 @@ $$
 ### 8. Transforme the data the according to $P^TX$. Plot scatter plots of the transformed data.
 
 ![Transformed data](deentanlged_parent.png)
-
-$$
-\begin{tabular}
- cell1 & cell2 & cell3 \\ 
- cell4 & cell5 & cell6 \\  
- cell7 & cell8 & cell9    
-\end{tabular}
-$$
