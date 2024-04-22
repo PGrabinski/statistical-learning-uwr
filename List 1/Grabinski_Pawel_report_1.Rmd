@@ -1,6 +1,13 @@
-# Report 1 by Paweł Grabiński
-## Vector and Matrix Algebra, Multivariate Normal Distribution
+---
+title: "Report 1: Vector and Matrix Algebra, Multivariate Normal Distribution"
+author: "Paweł Grabiński"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
 
 # Exercises
 ## Exercise 1
@@ -198,7 +205,7 @@ Let's approximate them further:
 $$v_1 = \begin{bmatrix} 1 \\ 0.00355 \end{bmatrix}\\$$
 $$v_2 = \begin{bmatrix} -0.00355 \\ 1 \end{bmatrix}$$
 
-As noted during the lecture, the eigenvectors scaled by the square root of the eigenvalues give the directions of the axis of the elipses. The elipses are the constant density contours of the joint distribution. The vectors are orthogonal, but due to the radically diffent orders of magnitude of the eigenvalues and scales on the plot we can't see that.
+As noted during the lecture, the eigenvectors scaled by the square root of the eigenvalues give the directions of the axis of the ellipses. The ellipses are the constant density contours of the joint distribution. The vectors are orthogonal, but due to the radically different orders of magnitude of the eigenvalues and scales on the plot we can't see that.
 
 ![Constant density elipsoids and the covariance matrix's eigenvectors](E3P3.png)
 
@@ -220,7 +227,7 @@ As stated during the lecture, distribution of a subset of random variables from 
 
 ### 6. Suppose that the hospital records of a new-born child was lost. Give a best guess for the value of their length. Provide with accuracy bounds of your ‘educated’ guess based on the $3-\sigma$ rule.
 
-The best guess for the length of the child is the mean of the distributionn as the probablity density has the highest value there, i.e. $49.8\; cm$.
+The best guess for the length of the child is the mean of the distribution as the probability density has the highest value there, i.e. $49.8\; cm$.
 
 The accuracy bounds are given by the $3-\sigma$ rule, that is:
 $$49.8-3\cdot 2.5\;\text{cm}\leq L \leq 49.8+3\cdot2.5\;\text{cm}\\$$
@@ -246,7 +253,7 @@ Let $X_1$, $X_2$, and $X_3$ be independent $N(\mu,\Sigma)$ random vectors of a d
 $$V_1=\frac{1}{4}X_1-\frac{1}{2}X_2+\frac{1}{4}X_3\\$$
 $$V_2=\frac{1}{4}X_1-\frac{1}{2}X_2-\frac{1}{4}X_3$$
 
-First, let's construct a new $X$ vectot that is $3p$-dimensional and is a concatenation of $X_1$, $X_2$ and $X_3$:
+First, let's construct a new $X$ vector that is $3p$-dimensional and is a concatenation of $X_1$, $X_2$ and $X_3$:
 $$X=\begin{bmatrix} X_1 \\ X_2 \\ X_3 \end{bmatrix}$$
 
 It's mean is:
@@ -256,7 +263,7 @@ $$\Sigma_X=\begin{bmatrix} \Sigma & 0 & 0 \\ 0 & \Sigma & 0 \\ 0 & 0 & \Sigma \e
 
 Then, we can construct the matrix $A_1$ that is:
 $$A_1=\begin{bmatrix} \frac{1}{4} I_{p\times p} & -\frac{1}{2}I_{p\times p} & \frac{1}{4}I_{p\times p}\end{bmatrix}$$
-And $I_{p\times p}$ is $p\times p-$dimensional identity matrix. It's diemnsion is $p\times 3p$.
+And $I_{p\times p}$ is $p\times p-$dimensional identity matrix. It's dimension is $p\times 3p$.
 
 From the lecture we know that the distribution, i.e. the mean vector and the covariance matrix, of $X$ changes as:
 
@@ -313,7 +320,6 @@ $$=\begin{bmatrix} \frac{3}{8}\Sigma & \frac{1}{4}\Sigma \\ \frac{1}{4}\Sigma  &
 
 Finally, we have:
 $$ V=A X \sim N\left(\begin{bmatrix} 0 \\ -\frac{1}{2}\mu \end{bmatrix}, \begin{bmatrix} \frac{3}{8}\Sigma & \frac{1}{4}\Sigma \\ \frac{1}{4}\Sigma  & \frac{3}{8}\Sigma  \end{bmatrix}\right)$$
-
 # Project 1: Weight and length of newborn children
 
 Health services and health insurance companies are interested in determining what kind
@@ -385,7 +391,7 @@ $$=\begin{bmatrix} 220276.6577 & 915.298170 \\ 915.2982 & 3.803266 \end{bmatrix}
 
 ### 6. Plot the data transformed according to $P^TX$, where $P$ is the matrix made of the eigenvectors standing as the columns. Interpret the transformed data.
 
-The transformed data seems to be decorellated - the constant-density elipsoids would be much more round than the original ones. The data is transformed into the eigenvector space, where the covariance matrix is diagonal.
+The transformed data seems to be decorellated - the constant-density ellipsoids would be much more round than the original ones. The data is transformed into the eigenvector space, where the covariance matrix is diagonal.
 
 ![Children data transformed into eigenvector space](deentanlged_children.png)
 
@@ -418,19 +424,19 @@ In the plot below, we can see that the data seems to be normally distributed. Th
 
 ![Parents data scatter plot](parents_data.png)
 
-The qq-plot for the length marginal distribution:
+The quantile plot for the length marginal distribution:
 
 ![Parents length qq plot](parents_length_qqplot.png)
 
-The qq-plot for the weight marginal distribution:
+The quantile plot for the weight marginal distribution:
 
 ![Parents weight qq plot](parents_weight_qqplot.png)
 
-The qq-plot for the father height marginal distribution:
+The quantile plot for the father height marginal distribution:
 
 ![Parents father height qq plot](father_height_qqplot.png)
 
-The qq-plot for the mother height marginal distribution:
+The quantile plot for the mother height marginal distribution:
 
 ![Parents mother height qq plot](mother_height_qqplot.png)
 
@@ -509,6 +515,7 @@ The elipsoids on the graph are the $0.95$ and $0.75$ elipsoids of the conditiona
 ### 7. Find spectral decomposition of the estimated covariance matrix for the complete set of the data.
 
 The eigenvalues are:
+
 |  $\lambda_i$|
 |------------:|
 | 2.202875e+05|
@@ -516,7 +523,7 @@ The eigenvalues are:
 | 4.788382e+00|
 | 4.783659e-01|
 
-The eigenvecotrs are:
+The eigenvectors are:
 
 |     $v_1$|      $v_2$|      $v_3$|      $v_4$|
 |---------:|----------:|----------:|----------:|
