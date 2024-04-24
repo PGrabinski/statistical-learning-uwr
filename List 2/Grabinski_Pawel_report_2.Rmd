@@ -1,0 +1,22 @@
+---
+title: "Report 2: Multivariate Means and Multiple Testing"
+author: "Paweł Grabiński"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+# Problems
+
+## Problem 1
+### 1. Let $Z_1, Z_2, ...$ be independent copies of a $N(0, 1)$ variable. Use these to define a chi-squared random variable with $p$ degrees of freedom $\chi^2_p$. Similarly, recall the definition of an $F$ distribution with $d_1$ and $d_2$ degrees of freedom $F_{d1,d2}$.
+
+A chi-squared random variable $X$ with $p$ degrees of freedom can be defined as
+$$X^2_p=\sum_{i=1}^p Z_i^2$$
+
+Assuming that $p>=d_1+d_2$, a random variable $Y$ from the $F$ distribution with $d_1$ and $d_2$ degrees of freedom can be defined as:
+$$Y=\frac{\frac{1}{d_1}\sum_{i=1}^{d_1}Z_i^2}{\frac{1}{d_2}\sum_{i=d_1+1}^{d_1+d_2}Z_i^2}$$
+
+### 2.Consider a random variable distributed according to $F_{p,n-p}$. What distribution will $F_{p,n-p}$ approximately follow for $p=4$ and $n=1000$?
+
+
+
