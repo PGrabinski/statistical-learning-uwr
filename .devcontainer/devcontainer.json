@@ -1,6 +1,8 @@
 {
   "name": "statistical-learning",
-  "image": "ghcr.io/rocker-org/devcontainer/r-ver:4",
+  "build": {
+    "dockerfile": "Dockerfile"    
+  },
   "features": {
       "ghcr.io/rocker-org/devcontainer-features/rstudio-server:latest": {}
   }, 
